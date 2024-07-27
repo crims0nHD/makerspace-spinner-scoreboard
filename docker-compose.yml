@@ -13,6 +13,14 @@ services:
     networks:
       - backend
     hostname: database
+    
+  backend:
+    build:
+      context: ./backend
+    restart: always
+    networks:
+      - backend
+    hostname: backend
 
 volumes:
   db-data:

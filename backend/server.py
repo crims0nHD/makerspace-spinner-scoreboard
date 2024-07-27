@@ -1,4 +1,4 @@
-#/usr/bin/env python3
+#!/usr/bin/env python3
 
 # FastAPI
 import uvicorn
@@ -41,7 +41,7 @@ def get_user(first_name = str, last_name = str):
             "message": "User does not exist"
         }
 
-@app.push("/user")
+@app.post("/user")
 def add_user(first_name = str, last_name = str, mail = str):
     # Prepare query
     cur = db_connection.cursor()
