@@ -21,6 +21,8 @@ services:
     networks:
       - backend
     hostname: backend
+    ports:
+      - 8001:8001
 
 volumes:
   db-data:
