@@ -7,14 +7,19 @@ import {
 import Scoreboard from './scoreboard/Scoreboard';
 import Interaction from './interaction/Interaction';
 import "./index.css";
+import Root from './root/Root';
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+  },
   {
     path: "/scoreboard",
     element: <Scoreboard />,
   },
   {
-    path: "/usermanagement",
+    path: "/interaction",
     element: <Interaction />,
   },
 ]);

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import FhHeader from "../shared/FhHeader";
 
-const API_URL = "http://localhost:8001/game?max_entries=10";
+const API_URL = "app/game?max_entries=10";
 
 export default function Scoreboard() {
   const [data, setData] = useState([]); // State to store the fetched data
@@ -21,7 +21,7 @@ export default function Scoreboard() {
 
       setData(data); // Update the state with fetched data
       setLoading(false); // Turn off loading state
-    } catch (err) {
+    } catch (err: any) {
       setError(err.message); // Set error state if fetching fails
       setLoading(false); // Turn off loading state
     }

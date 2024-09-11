@@ -11,7 +11,7 @@ services:
     volumes:
       - db-data:/var/lib/postgresql/data
     networks:
-      - backend
+      - database
     hostname: database
     
   backend:
@@ -20,12 +20,26 @@ services:
     restart: always
     networks:
       - backend
+      - database
     hostname: backend
     ports:
       - 8001:8001
+
+  frontend:
+    build:
+      context: ./frontend
+    restart: always
+    hostname: frontend
+    ports:
+      - 80:80
+    depends_on:
+      - backend
+    networks:
+      - backend
 
 volumes:
   db-data:
 
 networks:
+  database:
   backend:

@@ -1,7 +1,7 @@
 export default function GameManagement() {
-  const API_URL = "http://localhost:8001";
+  const API_URL = "app"; // This translates to http://domain/app
 
-  function submit(e) {
+  function submit(e: any) {
     const addGameQuery = {
       nickname: e.get("nickname"),
       guess_score: e.get("guessedValue"),
@@ -22,18 +22,18 @@ export default function GameManagement() {
   }
 
   return (
-    <div>
-      <form action={submit}>
-        <label>Nickname:</label>
-        <input name="nickname" />
-        <br></br>
-        <label>Schätzung:</label>
-        <input name="guessedValue" />
-        <br></br>
-        <label>Erzielte Umdrehungen:</label>
-        <input name="actualValue" />
-        <br></br>
-        <button type="submit">Add Game</button>
+    <div className="w-10/12">
+      <form action={submit} className="w-full">
+        <div className="grid grid-cols-3 w-full gap-2">
+          <label>Nickname:</label>
+          <input className="col-span-2 border border-gray-500" name="nickname" />
+          <label>Schätzung:</label>
+          <input className="col-span-2 border border-gray-500" name="guessedValue" />
+          <label>Erzielte Umdrehungen:</label>
+          <input className="col-span-2 border border-gray-500" name="actualValue" />
+        </div>
+
+        <button className="py-2 px-5 my-2 bg-green-900 text-white" type="submit">Add Game</button>
       </form>
     </div>
   );

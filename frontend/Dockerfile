@@ -1,7 +1,5 @@
 FROM node:22-alpine as builder
 
-RUN npm install --global yarn
-
 RUN mkdir /app
 COPY ./ /app/
 WORKDIR /app
@@ -16,15 +14,19 @@ COPY --from=builder /app/dist/ /usr/share/nginx/html
 COPY <<EOF /etc/nginx/nginx.conf
 http {
     server {
+        
         listen 80;
 
         location / {
+            include /etc/nginx/mime.types;
             root /usr/share/nginx/html;
         }
 
         location /app {
-            proxy_pass http://backend:8000;
+            proxy_pass http://backend:8001;
         }
     }
 }
+
+events {}
 EOF
