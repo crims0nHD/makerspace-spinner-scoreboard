@@ -21,6 +21,8 @@ For this, log into the database and execute database/create-structure.sql.
 
 ## Usage
 
-Port 80: a HTTP webserver hosting the user interface under /interaction and a scoreboard under /scoreboard
-
-Port 8001: hosts the REST-API for the database
+### Port 80:
+- / holds a small navigation site
+- /interaction holds the user management and game management
+- /scoreboard holds, well, the scoreboard 
+- /app holds the API and should not be accessed by a web browser

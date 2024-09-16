@@ -22,8 +22,8 @@ http {
             root /usr/share/nginx/html;
         }
 
-        location /app {
-            proxy_pass http://backend:8001;
+        location /app/ {
+            proxy_pass http://backend:8001/;
         }
     }
 }
