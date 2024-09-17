@@ -5,7 +5,10 @@ name = "pypi"
 
 [packages]
 fastapi = "*"
+uvicorn = "*"
 psycopg2-binary = "*"
+pandas = "*"
+xlsxwriter = "*"
 
 [dev-packages]
 

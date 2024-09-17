@@ -2,8 +2,11 @@
 
 # FastAPI
 import uvicorn
+import pandas as pd
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import FileResponse
+from tempfile import NamedTemporaryFile
 
 # Postgres
 import psycopg2
@@ -114,6 +117,31 @@ def add_game(nickname: str,
     return {
         "success": True
     }
+
+def fetch_table_data(cursor, table_name):
+    query = f"SELECT * FROM {table_name};"
+    cursor.execute(query)
+    data = cursor.fetchall()
+    columns = [desc[0] for desc in cursor.description]
+    return pd.DataFrame(data, columns=columns)
+
+@app.get("/download")
+def download_games():
+    cur = db_connection.cursor()
+
+    table_users = fetch_table_data(cur, "Users")
+    table_games = fetch_table_data(cur, "GameLog")
+
+    with NamedTemporaryFile(delete=False, suffix=".xlsx") as temp_file:
+        temp_file_name = temp_file.name
+            
+        # Create an Excel writer object and write the data into it
+        with pd.ExcelWriter(temp_file_name, engine='xlsxwriter') as writer:
+            table_users.to_excel(writer, sheet_name='Users', index=False)
+            table_games.to_excel(writer, sheet_name='Games', index=False)
+            
+    return FileResponse(temp_file_name, filename="db_dump.xlsx", media_type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")
+
 
 # Main
 def main():
