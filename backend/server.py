@@ -53,7 +53,13 @@ def get_user(first_name: str, last_name: str):
         }
 
 @app.post("/user")
-def add_user(nickname: str, first_name: str, last_name: str, mail: str):
+def add_user(nickname: str, first_name: str = "", last_name: str = "", mail: str = ""):
+    if nickname == "" or mail == "":
+        return {
+            "success": False,
+            "message": "Important fields were left blank"
+        }
+
     # Prepare query
     cur = db_connection.cursor()
     query = "SELECT * FROM Users WHERE (FirstName=%s AND LastName=%s) OR Nickname=%s"
