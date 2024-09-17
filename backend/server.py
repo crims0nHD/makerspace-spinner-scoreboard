@@ -63,6 +63,7 @@ def add_user(nickname: str, first_name: str, last_name: str, mail: str):
     
     add_query = "INSERT INTO Users (Nickname, FirstName, LastName, Mail) VALUES (%s, %s, %s, %s)"
     cur.execute(add_query, (nickname, first_name, last_name, mail))
+    db_connection.commit()
     return {
         "success": True
     }
@@ -89,7 +90,7 @@ def list_games(max_entries: int):
 
 @app.post("/game")
 def add_game(nickname: str,
-             guess_score: int, 
+             guess_score: int,
              actual_score: int):
     cur = db_connection.cursor()
     query = "SELECT * FROM Users WHERE Nickname=%s"
@@ -109,6 +110,7 @@ def add_game(nickname: str,
         NOW())
         """
     cur.execute(query, (nickname, actual_score, guess_score))
+    db_connection.commit()
     return {
         "success": True
     }
