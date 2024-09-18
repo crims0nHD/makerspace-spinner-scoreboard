@@ -8,6 +8,7 @@ import Scoreboard from './scoreboard/Scoreboard';
 import Interaction from './interaction/Interaction';
 import "./index.css";
 import Root from './root/Root';
+import Admin from './admin/Admin';
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
   {
     path: "/interaction",
     element: <Interaction />,
+  },
+  {
+    path: "/admin",
+    element: <Admin />,
   },
 ]);
 
