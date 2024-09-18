@@ -62,8 +62,8 @@ def add_user(nickname: str, first_name: str = "", last_name: str = "", mail: str
 
     # Prepare query
     cur = db_connection.cursor()
-    query = "SELECT * FROM Users WHERE (FirstName=%s AND LastName=%s) OR Nickname=%s"
-    cur.execute(query, (first_name, last_name, nickname))
+    query = "SELECT * FROM Users WHERE Nickname=%s"
+    cur.execute(query, (nickname,))
     if cur.rowcount > 0:
         return {
             "success": False,
