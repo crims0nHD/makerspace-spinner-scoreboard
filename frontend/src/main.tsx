@@ -4,11 +4,13 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Scoreboard from './scoreboard/Scoreboard';
-import Interaction from './interaction/Interaction';
+
 import "./index.css";
-import Root from './root/Root';
-import Admin from './admin/Admin';
+
+import Root from './sites/root/Root';
+import Scoreboard from './sites/scoreboard/Scoreboard';
+import Interaction from './sites/interaction/Interaction';
+import Admin from './sites/admin/Admin';
 
 const router = createBrowserRouter([
   {

@@ -23,6 +23,6 @@ For this, log into the database and execute database/create-structure.sql.
 
 ### Port 80:
 - / holds a small navigation site
-- /interaction holds the user management and game management
-- /scoreboard holds, well, the scoreboard 
-- /app holds the API and should not be accessed by a web browser
+
+## Hacking and tinkering
+Every subproject has documentation in their respective directory.

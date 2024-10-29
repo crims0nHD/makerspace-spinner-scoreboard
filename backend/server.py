@@ -24,36 +24,8 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
-@app.get("/user")
-def get_user(first_name: str, last_name: str):
-    # Prepare query
-    cur = db_connection.cursor()
-    query = "SELECT * FROM Users WHERE FirstName=%s AND LastName=%s"
-    # Execute query
-    cur.execute(query, (first_name, last_name))
-    if cur.rowcount == 1:
-        user_data = cur.fetchone()
-        return { 
-            "success": True,
-            "data": {
-                "first_name": user_data[0],
-                "last_name": user_data[1],
-                "mail": user_data[2]
-                }
-            }
-    elif cur.rowcount > 1:
-        return {
-            "success": False,
-            "message": "Multiple instances of a user?"
-        }
-    else:
-        return {
-            "success": False,
-            "message": "User does not exist"
-        }
-
 @app.post("/user")
-def add_user(nickname: str, first_name: str = "", last_name: str = "", mail: str = ""):
+def add_user(nickname: str, mail: str = ""):
     if nickname == "" or mail == "":
         return {
             "success": False,
@@ -70,8 +42,8 @@ def add_user(nickname: str, first_name: str = "", last_name: str = "", mail: str
             "message": "User already exists"
         }
     
-    add_query = "INSERT INTO Users (Nickname, FirstName, LastName, Mail) VALUES (%s, %s, %s, %s)"
-    cur.execute(add_query, (nickname, first_name, last_name, mail))
+    add_query = "INSERT INTO Users (Nickname, Mail) VALUES (%s, %s)"
+    cur.execute(add_query, (nickname, mail))
     db_connection.commit()
     return {
         "success": True

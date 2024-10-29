@@ -1,8 +1,6 @@
 CREATE TABLE Users (
     id SERIAL PRIMARY KEY,
     Nickname TEXT,
-    FirstName TEXT,
-    LastName TEXT,
     Mail TEXT
 );
 

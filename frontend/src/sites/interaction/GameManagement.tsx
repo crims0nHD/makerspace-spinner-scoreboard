@@ -33,7 +33,7 @@ export default function GameManagement() {
           <input className="col-span-2 border border-gray-500" name="actualValue" />
         </div>
 
-        <button className="py-2 px-5 my-2 bg-green-900 text-white" type="submit">Add Game</button>
+        <button className="py-2 px-5 my-2 bg-hgbgreen-100 text-white" type="submit">Add Game</button>
       </form>
     </div>
   );

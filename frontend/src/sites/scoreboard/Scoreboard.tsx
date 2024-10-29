@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import FhHeader from "../shared/FhHeader";
+import FhHeader from "../../components/FhHeader";
 
 const API_URL = "app/game?max_entries=10";
 

@@ -4,8 +4,6 @@ export default function UserManagement() {
   function submit(e) {
     const addUserQuery = {
       nickname: e.get("nickname"),
-      first_name: e.get("firstName"),
-      last_name: e.get("lastName"),
       mail: e.get("email"),
     };
 
@@ -28,15 +26,11 @@ export default function UserManagement() {
         <div className="grid grid-cols-3 w-full gap-2">
           <label>Nickname:</label>
           <input className="col-span-2 border border-gray-500" name="nickname" />
-          <label>Vorname:</label>
-          <input className="col-span-2 border border-gray-500" name="firstName" />
-          <label>Nachname:</label>
-          <input className="col-span-2 border border-gray-500" name="lastName" />
           <label>E-Mail:</label>
           <input className="col-span-2 border border-gray-500" name="email" />
         </div>
 
-        <button className="py-2 px-5 my-2 bg-green-900 text-white" type="submit">Create User</button>
+        <button className="py-2 px-5 my-2 bg-hgbgreen-100 text-white" type="submit">Create User</button>
       </form>
     </div>
   );
