@@ -5,9 +5,10 @@ import os
 # FastAPI
 import uvicorn
 import pandas as pd
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
+from fastapi.security.api_key import APIKeyHeader
 from tempfile import NamedTemporaryFile
 
 # Postgres
@@ -16,8 +17,19 @@ import psycopg2
 # database connection
 db_connection = None
 
+# API key (TODO: better auth)
+api_key = None
+
 # Setup API
-app = FastAPI()
+api_key_header = APIKeyHeader(name="apikey", auto_error=False)
+def verify_api_key(key: str):
+    if key != api_key:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Could not validate credentials",
+        )
+
+app = FastAPI(dependencies=[Depends(verify_api_key)])
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -127,8 +139,10 @@ def download_games():
 def main():
     db_user = os.getenv("POSTGRES_USER")
     db_password = os.getenv("POSTGRES_PASSWORD")
+    global api_key
+    api_key = os.getenv("API_KEY")
 
-    if db_user is None or db_password is None:
+    if db_user is None or db_password is None or api_key is None:
         print("Not all env variables are set correctly! Exiting!")
         exit(-1)
 

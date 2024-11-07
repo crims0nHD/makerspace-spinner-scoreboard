@@ -11,6 +11,7 @@ import Root from './sites/root/Root';
 import Scoreboard from './sites/scoreboard/Scoreboard';
 import Interaction from './sites/interaction/Interaction';
 import Admin from './sites/admin/Admin';
+import Login from './sites/login/Login';
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
   {
     path: "/admin",
     element: <Admin />,
+  },
+  {
+    path: "/login",
+    element: <Login />
   },
 ]);
 

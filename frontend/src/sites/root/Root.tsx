@@ -9,6 +9,8 @@ export default function Root() {
             <Link to={"scoreboard"}>Scoreboard</Link>
             <br></br>
             <Link to={"admin"}>Admin</Link>
+            <br></br>
+            <Link to={"login"}>Login</Link>
         </div>
     );
 }
