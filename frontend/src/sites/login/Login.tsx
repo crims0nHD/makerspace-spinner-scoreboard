@@ -8,7 +8,7 @@ export default function Login() {
     const [cookies, setCookie] = useCookies(['apikey'])
 
     function submit(e: any) {
-        setCookie('apikey', e.get("apikey"), { path: '/' })
+        setCookie('apikey', e.get("apikey"), { path: '/', sameSite: "none", secure: true })
     }
 
     return (
