@@ -21,8 +21,8 @@ db_connection = None
 api_key = None
 
 # Setup API
-api_key_header = APIKeyCookie(name="apikey")
-def verify_api_key(key: str):
+api_key_cookie = APIKeyCookie(name="apikey")
+def verify_api_key(key: str = Depends(api_key_cookie)):
     if key != api_key:
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
