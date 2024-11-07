@@ -26,10 +26,10 @@ app.add_middleware(
 
 @app.post("/user")
 def add_user(nickname: str, mail: str = ""):
-    if nickname == "" or mail == "":
+    if nickname == "":
         return {
             "success": False,
-            "message": "Important fields were left blank"
+            "message": "Username was left blank"
         }
 
     # Prepare query

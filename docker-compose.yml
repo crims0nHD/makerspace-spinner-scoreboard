@@ -13,7 +13,7 @@ services:
     networks:
       - database
     hostname: database
-    
+
   backend:
     build:
       context: ./backend

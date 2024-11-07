@@ -16,7 +16,8 @@ export default function GameManagement() {
         if (j.success) {
           console.log("Game has been added");
         } else {
-          alert("Error while adding game");
+          alert(j.message);
+          console.error(j.message);
         }
       });
   }

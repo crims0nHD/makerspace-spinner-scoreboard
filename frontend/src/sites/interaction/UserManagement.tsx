@@ -15,7 +15,8 @@ export default function UserManagement() {
         if (j.success) {
           console.log("User has been created successfully");
         } else {
-          alert("User already exists");
+          alert(j.message);
+          console.error(j.message);
         }
       });
   }
