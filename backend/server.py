@@ -8,7 +8,7 @@ import pandas as pd
 from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
-from fastapi.security.api_key import APIKeyHeader
+from fastapi.security.api_key import APIKeyCookie
 from tempfile import NamedTemporaryFile
 
 # Postgres
@@ -21,7 +21,7 @@ db_connection = None
 api_key = None
 
 # Setup API
-api_key_header = APIKeyHeader(name="apikey", auto_error=False)
+api_key_header = APIKeyCookie(name="apikey")
 def verify_api_key(key: str):
     if key != api_key:
         raise HTTPException(
