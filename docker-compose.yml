@@ -4,8 +4,8 @@ services:
     restart: always
     shm_size: 128mb
     environment:
-      POSTGRES_USER: test_user
-      POSTGRES_PASSWORD: test_password
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
 
       POSTGRES_DB: game_db
     volumes:
@@ -18,6 +18,9 @@ services:
     build:
       context: ./backend
     restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     networks:
       - backend
       - database

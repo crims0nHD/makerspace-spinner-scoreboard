@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+import os
+
 # FastAPI
 import uvicorn
 import pandas as pd
@@ -123,12 +125,19 @@ def download_games():
 
 # Main
 def main():
+    db_user = os.getenv("POSTGRES_USER")
+    db_password = os.getenv("POSTGRES_PASSWORD")
+
+    if db_user is None or db_password is None:
+        print("Not all env variables are set correctly! Exiting!")
+        exit(-1)
+
     global db_connection
     db_connection = psycopg2.connect(
         host="database",
         database="game_db",
-        user="test_user",
-        password="test_password"
+        user=db_user,
+        password=db_password
     )
 
     uvicorn.run(app,
