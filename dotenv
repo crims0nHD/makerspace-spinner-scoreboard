@@ -1,3 +1,4 @@
 # .env
 POSTGRES_USER=testuser
 POSTGRES_PASSWORD=testpassword
+API_KEY=asdfasdf
