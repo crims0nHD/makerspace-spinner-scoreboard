@@ -11,4 +11,5 @@ FROM nginx:1.27.0-alpine
 
 COPY --from=builder /app/dist/ /usr/share/nginx/html
 
-COPY ./nginx.conf /etc/nginx/nginx.conf
+COPY ./nginx.conf /etc/nginx/templates/nginx.conf.template
+ENV NGINX_ENVSUBST_OUTPUT_DIR "/etc/nginx"

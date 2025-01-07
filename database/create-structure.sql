@@ -6,7 +6,7 @@ CREATE TABLE Users (
 
 CREATE TABLE GameLog (
     UserId SERIAL,
-    FOREIGN KEY (UserId) REFERENCES Users (id),
+    FOREIGN KEY (UserId) REFERENCES Users (id) ON DELETE CASCADE,
 
     ActualSpins SMALLINT,
     GuessSpins SMALLINT,

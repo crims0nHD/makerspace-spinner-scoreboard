@@ -47,6 +47,8 @@ services:
       context: ./frontend
     restart: always
     hostname: frontend
+    environment:
+      API_KEY: ${API_KEY}
     ports:
       - 8080:80
     depends_on:
