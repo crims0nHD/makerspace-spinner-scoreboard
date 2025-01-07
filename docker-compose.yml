@@ -1,6 +1,7 @@
 services:
   db:
-    image: postgres
+    build:
+      context: ./database
     restart: always
     shm_size: 128mb
     environment:
@@ -14,6 +15,20 @@ services:
       - database
     hostname: database
 
+  db_management:
+    image: ghcr.io/shyim/adminerevo:latest
+    restart: always
+    environment:
+      - ADMINER_DEFAULT_DRIVER=pgsql
+      - ADMINER_DEFAULT_SERVER=database
+      - ADMINER_DEFAULT_USER=${POSTGRES_USER}
+      - ADMINER_DEFAULT_PASSWORD=${POSTGRES_PASSWORD}
+      - ADMINER_DEFAULT_PASSWORD=game_db
+    hostname: dbmanagement
+    networks:
+      - frontend
+      - database
+
   backend:
     build:
       context: ./backend
@@ -23,7 +38,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       API_KEY: ${API_KEY}
     networks:
-      - backend
+      - frontend
       - database
     hostname: backend
 
@@ -37,11 +52,11 @@ services:
     depends_on:
       - backend
     networks:
-      - backend
+      - frontend
 
 volumes:
   db-data:
 
 networks:
   database:
-  backend:
+  frontend:
