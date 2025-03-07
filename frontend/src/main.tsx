@@ -12,6 +12,7 @@ import Scoreboard from './sites/scoreboard/Scoreboard';
 import Interaction from './sites/interaction/Interaction';
 import Admin from './sites/admin/Admin';
 import Login from './sites/login/Login';
+import Tutorial from './sites/tutorial/Tutorial';
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login />
+  },
+  {
+    path: "/tutorial",
+    element: <Tutorial />
   },
 ]);
 
